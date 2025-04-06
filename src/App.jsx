@@ -54,7 +54,7 @@ const App = () => {
       setMessage(`✅ Transaction sent! TXID: ${txid}`);
     } catch (err) {
       console.error(err);
-      setMessage("❌ Transaction failed.");
+      setMessage(`❌ Transaction failed: ${err.message || err}`);
     }
   };
 
