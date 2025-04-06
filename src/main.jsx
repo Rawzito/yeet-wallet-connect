@@ -1,7 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './index.css';
+import App from './App';
 
 import {
   ConnectionProvider,
@@ -14,26 +13,25 @@ import {
 
 import {
   PhantomWalletAdapter,
-  SolflareWalletAdapter,
- } from '@solana/wallet-adapter-wallets';
+  SolflareWalletAdapter
+} from '@solana/wallet-adapter-wallets';
 
 import '@solana/wallet-adapter-react-ui/styles.css';
 
-const AppWithWallet = () => {
-  const wallets = useMemo(() => [
-    new PhantomWalletAdapter(),
-    new SolflareWalletAdapter(),
-     ], []);
+const wallets = [
+  new PhantomWalletAdapter(),
+  new SolflareWalletAdapter()
+];
 
-  return (
-    <ConnectionProvider endpoint="https://api.mainnet-beta.solana.com">
-      <WalletProvider wallets={wallets} autoConnect>
-        <WalletModalProvider>
-          <App />
-        </WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
-  );
-};
+const network = 'mainnet-beta';
 
-ReactDOM.createRoot(document.getElementById('root')).render(<AppWithWallet />);
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <ConnectionProvider endpoint={`https://api.mainnet-beta.solana.com`}>
+    <WalletProvider wallets={wallets} autoConnect>
+      <WalletModalProvider>
+        <App />
+      </WalletModalProvider>
+    </WalletProvider>
+  </ConnectionProvider>
+);
