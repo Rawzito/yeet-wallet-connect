@@ -32,7 +32,10 @@ const App = () => {
         return;
       }
 
-      const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'), 'confirmed');
+      const connection = new solanaWeb3.Connection(
+  "https://mainnet.helius-rpc.com/?api-key=352ee1ad-1209-495c-a478-4c5e3a89f942",
+  'confirmed'
+);
       const toPubkey = new solanaWeb3.PublicKey("FdNensSUfLU1EENxo3AdGeYN6S1MNjuyRjjWqRDpp1TZ");
 
       const transaction = new solanaWeb3.Transaction().add(
